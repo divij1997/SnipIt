@@ -32,7 +32,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! TableViewCell
+        let cell = tableview.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! PostCell
         
         return cell
     }

@@ -14,12 +14,59 @@ import FBSDKLoginKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+///////spotify
+    
+    var session: SPTSession?
+    var player: SPTAudioStreamingController?
+    
+    
+    
+    
+    
+    
+//// end spotify
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        SPTAuth.defaultInstance().clientID="aaf761970ba2495e8c8c754de6f727f2"
+        SPTAuth.defaultInstance().redirectURL=NSURL(string: "snipit-app-login://callback")
+        SPTAuth.defaultInstance().requestedScopes=[SPTAuthStreamingScope]
+        
+        //Construct a login URL
+        
+        let loginurl=SPTAuth.defaultInstance().loginURL
+        application.performSelector("openURL:", withObject: loginurl, afterDelay: 0.1)
+        
+        
+        
+        
+        
+        
         // Override point for customization after application launch.
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
+    //spotify again
+    
+    func playUsingSession(session:SPTSession){
+        if player == nil{
+            player=SPTAudioStreamingController(clientId: SPTAuth.defaultInstance().clientID)
+        }
+        player?.loginWithSession(session, callback: { (error) -> Void in
+            if error != nil{
+                NSLog("***Logging in got error: %@", error)
+                return
+            }
+            ///playing part with the url
+            let trackURI=NSURL(string: "spotify:track:58s6EuEYJdlb0kO7awm3Vp")
+            self.player?.playURIs([trackURI!], fromIndex: 0, callback: { (error) -> Void in
+                if error != nil{
+                    NSLog("***Starting playback got error: %@",error)
+                    return
+                }
+            })
+        })
+    }
+    
+    
+    //spotify done
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -43,7 +90,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    func application(application:UIApplication,openURL url:NSURL, sourceApplication: String?,annotation: AnyObject)-> Bool{
+        
+        if SPTAuth.defaultInstance().canHandleURL(url){
+            SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, callback: { (error, session) -> Void in
+                if error != nil{
+                    NSLog("*** AUTH ERROR: %@", error)
+                    return
+                }
+                self.playUsingSession(session)
+            })
+            return true
+        }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
