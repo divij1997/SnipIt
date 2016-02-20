@@ -24,6 +24,9 @@
 		312591FC1C7845890079414A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312591FA1C7845890079414A /* FBSDKLoginKit.framework */; };
 		312591FF1C7850AB0079414A /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312591FE1C7850AB0079414A /* DataService.swift */; };
 		312592011C78CEB10079414A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312592001C78CEB10079414A /* CreateAccountViewController.swift */; };
+		52FA0DC41C78E1C1008432E7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FA0DC31C78E1C1008432E7 /* AVFoundation.framework */; };
+		52FA0DC61C78E1D5008432E7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FA0DC51C78E1D5008432E7 /* SystemConfiguration.framework */; };
+		52FA0DCC1C78E8C6008432E7 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FA0DCB1C78E8C6008432E7 /* Spotify.framework */; };
 		94AE57771EB5C29C7B20E0E6 /* Pods_SnipIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 605D4AB16DC70567BA101A86 /* Pods_SnipIt.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +73,10 @@
 		312591FE1C7850AB0079414A /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		312592001C78CEB10079414A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		5227699B5D11C509D7814D15 /* Pods-SnipIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnipIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-SnipIt/Pods-SnipIt.release.xcconfig"; sourceTree = "<group>"; };
+		52FA0DC31C78E1C1008432E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		52FA0DC51C78E1D5008432E7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		52FA0DC71C78E53C008432E7 /* SnipIt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SnipIt-Bridging-Header.h"; sourceTree = "<group>"; };
+		52FA0DCB1C78E8C6008432E7 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 		605D4AB16DC70567BA101A86 /* Pods_SnipIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SnipIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -78,6 +85,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52FA0DC61C78E1D5008432E7 /* SystemConfiguration.framework in Frameworks */,
+				52FA0DC41C78E1C1008432E7 /* AVFoundation.framework in Frameworks */,
+				52FA0DCC1C78E8C6008432E7 /* Spotify.framework in Frameworks */,
 				312591F81C7845790079414A /* Bolts.framework in Frameworks */,
 				312591FB1C7845890079414A /* FBSDKCoreKit.framework in Frameworks */,
 				312591FC1C7845890079414A /* FBSDKLoginKit.framework in Frameworks */,
@@ -114,6 +124,8 @@
 		2634014F883582A7675B2426 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52FA0DC51C78E1D5008432E7 /* SystemConfiguration.framework */,
+				52FA0DC31C78E1C1008432E7 /* AVFoundation.framework */,
 				605D4AB16DC70567BA101A86 /* Pods_SnipIt.framework */,
 			);
 			name = Frameworks;
@@ -154,6 +166,7 @@
 				312591C01C7816290079414A /* Assets.xcassets */,
 				312591C21C7816290079414A /* LaunchScreen.storyboard */,
 				312591C51C7816290079414A /* Info.plist */,
+				52FA0DC71C78E53C008432E7 /* SnipIt-Bridging-Header.h */,
 			);
 			path = SnipIt;
 			sourceTree = "<group>";
@@ -215,6 +228,7 @@
 		312591F61C7843B10079414A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52FA0DCB1C78E8C6008432E7 /* Spotify.framework */,
 				312591F91C7845890079414A /* FBSDKCoreKit.framework */,
 				312591FA1C7845890079414A /* FBSDKLoginKit.framework */,
 				312591F71C7845790079414A /* Bolts.framework */,
@@ -564,15 +578,22 @@
 			baseConfigurationReference = 0D4D4034254DA7C83D9F39E8 /* Pods-SnipIt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SnipIt",
 				);
 				INFOPLIST_FILE = SnipIt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.divnik.SnipIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SnipIt/SnipIt-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -582,15 +603,21 @@
 			baseConfigurationReference = 5227699B5D11C509D7814D15 /* Pods-SnipIt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SnipIt",
 				);
 				INFOPLIST_FILE = SnipIt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.divnik.SnipIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SnipIt/SnipIt-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
