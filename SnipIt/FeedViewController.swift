@@ -2,22 +2,16 @@
 //  FeedViewController.swift
 //  SnipIt
 //
-//  Created by Nikhil Nandkumar on 2/19/16.
+//  Created by Nikhil Nandkumar on 2/20/16.
 //  Copyright © 2016 divnik. All rights reserved.
 //
 
 import UIKit
 
 class FeedViewController: UIViewController {
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.title = "Feed"
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
 
         // Do any additional setup after loading the view.
     }
