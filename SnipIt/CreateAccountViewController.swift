@@ -28,7 +28,7 @@ class CreateAccountViewController: UIViewController {
     
     @IBAction func accountButtonPressed (sender: UIButton!) {
         if let userId = emailText.text where userId != "", let pwd = pwdText.text where pwd != "", let pwdConfirm = pwdConfirmText.text where pwdConfirm != "" {
-            if userId == pwd {
+            if pwd == pwdConfirm {
                 DataService.ds.REF_BASE.authUser(userId, password: pwd, withCompletionBlock: {
                     error, authData in
                     
@@ -37,21 +37,18 @@ class CreateAccountViewController: UIViewController {
                             DataService.ds.REF_BASE.createUser(userId, password: pwd, withValueCompletionBlock: {
                                 error, result in
                                 
+                                DataService.ds.REF_BASE.authUser(userId, password: pwd, withCompletionBlock: nil)
+                                
                                 NSUserDefaults.standardUserDefaults().setValue(result ["UID"], forKey: "UID")
-                                self.performSegueWithIdentifier("homePage", sender: nil)
-                                
-                                
+                                self.performSegueWithIdentifier("homePageFromCreate", sender: nil)
                             })
-                        }
-                        else {
-                            self.showErrorAlert("Confirm Password Error", msg: "Oops! Looks like your passwords don't match!")
                         }
                     } else {
                         self.showErrorAlert("Account Already Exists", msg: "Oops! Looks like you should be on the Log In page!")
                     }
                 })
             } else {
-                
+                self.showErrorAlert("Confirm Password Error", msg: "Oops! Looks like your passwords don't match!")
             }
         } else {
             showErrorAlert("Please Enter All Fields", msg: "Oops! Looks like you've left one or more required fields blank")

@@ -8,12 +8,18 @@
 
 import UIKit
 
-class FeedViewController: UIViewController {
-
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var tableview: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        tableview.dataSource = self
+        tableview.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +27,16 @@ class FeedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableview.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! TableViewCell
+        
+        return cell
+    }
+
 
     /*
     // MARK: - Navigation

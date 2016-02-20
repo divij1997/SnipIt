@@ -14,7 +14,6 @@
 		312591C41C7816290079414A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312591C21C7816290079414A /* LaunchScreen.storyboard */; };
 		312591CF1C7816290079414A /* SnipItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312591CE1C7816290079414A /* SnipItTests.swift */; };
 		312591DA1C7816290079414A /* SnipItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312591D91C7816290079414A /* SnipItUITests.swift */; };
-		312591E91C781F4A0079414A /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312591E81C781F4A0079414A /* FeedViewController.swift */; };
 		312591EB1C781F720079414A /* NearMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312591EA1C781F720079414A /* NearMeViewController.swift */; };
 		312591ED1C781F8E0079414A /* SnipItViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312591EC1C781F8E0079414A /* SnipItViewController.swift */; };
 		312591EF1C781F9D0079414A /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312591EE1C781F9D0079414A /* FriendsViewController.swift */; };
@@ -24,6 +23,8 @@
 		312591FC1C7845890079414A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312591FA1C7845890079414A /* FBSDKLoginKit.framework */; };
 		312591FF1C7850AB0079414A /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312591FE1C7850AB0079414A /* DataService.swift */; };
 		312592011C78CEB10079414A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312592001C78CEB10079414A /* CreateAccountViewController.swift */; };
+		312592051C78EF9F0079414A /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312592041C78EF9F0079414A /* FeedViewController.swift */; };
+		312592071C7903050079414A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312592061C7903050079414A /* PostCell.swift */; };
 		94AE57771EB5C29C7B20E0E6 /* Pods_SnipIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 605D4AB16DC70567BA101A86 /* Pods_SnipIt.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +60,6 @@
 		312591D51C7816290079414A /* SnipItUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnipItUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		312591D91C7816290079414A /* SnipItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnipItUITests.swift; sourceTree = "<group>"; };
 		312591DB1C7816290079414A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		312591E81C781F4A0079414A /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		312591EA1C781F720079414A /* NearMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeViewController.swift; sourceTree = "<group>"; };
 		312591EC1C781F8E0079414A /* SnipItViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnipItViewController.swift; sourceTree = "<group>"; };
 		312591EE1C781F9D0079414A /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +69,8 @@
 		312591FA1C7845890079414A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		312591FE1C7850AB0079414A /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		312592001C78CEB10079414A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		312592041C78EF9F0079414A /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		312592061C7903050079414A /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		5227699B5D11C509D7814D15 /* Pods-SnipIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnipIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-SnipIt/Pods-SnipIt.release.xcconfig"; sourceTree = "<group>"; };
 		605D4AB16DC70567BA101A86 /* Pods_SnipIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SnipIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -182,11 +184,12 @@
 				312591B91C7816290079414A /* AppDelegate.swift */,
 				312591BB1C7816290079414A /* ViewController.swift */,
 				312592001C78CEB10079414A /* CreateAccountViewController.swift */,
-				312591E81C781F4A0079414A /* FeedViewController.swift */,
 				312591EA1C781F720079414A /* NearMeViewController.swift */,
 				312591EC1C781F8E0079414A /* SnipItViewController.swift */,
 				312591EE1C781F9D0079414A /* FriendsViewController.swift */,
 				312591F01C781FCE0079414A /* JamQViewController.swift */,
+				312592041C78EF9F0079414A /* FeedViewController.swift */,
+				312592061C7903050079414A /* PostCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -416,14 +419,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				312591EB1C781F720079414A /* NearMeViewController.swift in Sources */,
+				312592051C78EF9F0079414A /* FeedViewController.swift in Sources */,
 				312591ED1C781F8E0079414A /* SnipItViewController.swift in Sources */,
 				312591BC1C7816290079414A /* ViewController.swift in Sources */,
-				312591E91C781F4A0079414A /* FeedViewController.swift in Sources */,
 				312591EF1C781F9D0079414A /* FriendsViewController.swift in Sources */,
 				312591BA1C7816290079414A /* AppDelegate.swift in Sources */,
 				312592011C78CEB10079414A /* CreateAccountViewController.swift in Sources */,
 				312591F11C781FCE0079414A /* JamQViewController.swift in Sources */,
 				312591FF1C7850AB0079414A /* DataService.swift in Sources */,
+				312592071C7903050079414A /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
