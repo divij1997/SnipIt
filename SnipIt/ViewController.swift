@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+
 class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var userIdText: UITextField!
@@ -48,12 +49,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         facebookLogin.logInWithReadPermissions(["email"]) { (facebookResult: FBSDKLoginManagerLoginResult!, facebookError: NSError!) -> Void in
             
             if facebookError == nil {
+                
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 print("Successfully logged in with facebook. \(accessToken)")
                 
                 DataService.ds.REF_BASE.authWithOAuthProvider("facebook", token: accessToken, withCompletionBlock: {error, authData in
                     if error == nil {
                         print("Logged In! \(authData)")
+                        
+                        let user = ["provider" :authData.provider!, "blah": "Test"]
+                        DataService.ds.createUser(authData.uid, user: user)
+                        
+                        
                         NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: "UID")
                         self.performSegueWithIdentifier("homePage", sender: nil)
                     } else {
@@ -75,6 +82,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 if error != nil {
                     if error.code == -8 {
                        self.showErrorAlert("Account does not exist", msg: "Oops! Looks like you haven't created an account with us yet!")
+                        
                     }
                     else {
                         self.showErrorAlert("Invalid UserID or Password", msg: "Oops! Looks like you've made a typo or forgotten your username/password!")

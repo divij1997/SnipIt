@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableview: UITableView!
-    
+    var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,21 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         tableview.dataSource = self
         tableview.delegate = self
+        
+        DataService.ds.REF_POSTS.observeEventType(.Value, withBlock: { snapshot in
+            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
+                self.posts = []
+                for snap in snapshots {
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let post = Post(postKey: key, dictionary: postDict)
+                        self.posts.append(post)
+                    }
+                }
+            }
+            
+            self.tableview.reloadData()
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,14 +43,25 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        print("COUNT = \(posts.count)")
+        return posts.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! PostCell
         
-        return cell
+        let post = posts[indexPath.row]
+        
+        if let cell = tableview.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as? PostCell {
+            cell.configureCell(post)
+            return cell
+        } else {
+            return PostCell()
+        }
     }
 
 

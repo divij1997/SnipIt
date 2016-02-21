@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class SnipItViewController: UIViewController {
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "Snip It"
@@ -17,7 +19,7 @@ class SnipItViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        // snipItButton.layer.cornerRadius = 0.5 * snipItButton.bounds.size.width
         // Do any additional setup after loading the view.
     }
 
@@ -26,6 +28,28 @@ class SnipItViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func snipItButton(sender: AnyObject) {
+        
+        let player = MPMusicPlayerController.systemMusicPlayer()
+        let mediaItem = player.nowPlayingItem
+        if mediaItem != nil { // Check if there was actually something playing
+            let title: String = mediaItem!.valueForProperty(MPMediaItemPropertyTitle) as! String
+            let albumTitle: String = mediaItem!.valueForProperty(MPMediaItemPropertyAlbumTitle) as! String
+            let artist: String = mediaItem!.valueForProperty(MPMediaItemPropertyArtist) as! String
+            postToFirebase(title, artist: artist)
+        }
+        
+    }
+    
+    func postToFirebase(songtitle: String!, artist: String!) {
+        var post: Dictionary<String,AnyObject> = [
+            "name": songtitle,
+            "artist": artist
+        ]
+        
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+    }
 
     /*
     // MARK: - Navigation

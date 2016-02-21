@@ -37,7 +37,12 @@ class CreateAccountViewController: UIViewController {
                             DataService.ds.REF_BASE.createUser(userId, password: pwd, withValueCompletionBlock: {
                                 error, result in
                                 
-                                DataService.ds.REF_BASE.authUser(userId, password: pwd, withCompletionBlock: nil)
+                                DataService.ds.REF_BASE.authUser(userId, password: pwd, withCompletionBlock:{ err, authData in
+                                    
+                                    let user = ["provider" :authData.provider!, "blah": "emailTest"]
+                                    DataService.ds.createUser(authData.uid, user: user)
+                                    
+                                })
                                 
                                 NSUserDefaults.standardUserDefaults().setValue(result ["UID"], forKey: "UID")
                                 self.performSegueWithIdentifier("homePageFromCreate", sender: nil)
